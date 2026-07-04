@@ -6,6 +6,7 @@ description: >
   "Built by whoever showed up. Enter at your own risk."
 exits:
   north: 001-goblin-tea-party
+  east: 003-mighty-dragon
 items:
   - name: Suspicious Biscuit
     description: Smells faintly of danger. Might restore 1 HP. Might not.

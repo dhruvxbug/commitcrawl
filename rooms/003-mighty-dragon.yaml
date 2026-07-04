@@ -1,0 +1,18 @@
+id: 003-mighty-dragon
+title: The Mighty Dragon challenges you for a battle!.
+description: >
+  The air is thick with smoke and unbearable heat. Massive claw marks
+  scar the stone floor, and mountains of gold surround an ancient beast.
+exits:
+  north: 002-mirror-maze
+  west: 000-entrance
+items:
+  - name: Dragonbane
+    description: >
+     A legendary blade forged from celestial steel and tempered in the heart of a dying star.
+monster:
+  name: Ignaroth, the Flame Tyrant
+  greeting: >
+   "I can hear your heartbeat from across the cavern. It trembles with fear. Kneel now, and I may grant you a swift end."
+  difficulty: 4
+author: lucifer

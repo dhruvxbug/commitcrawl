@@ -8,6 +8,7 @@ exits:
   west: 001-goblin-tea-party
   north: TODO-shattered-sanctum
   east: TODO-hall-of-echoes
+  south: 003-mighty-dragon
 items:
   - name: Handheld Mirror
     description: Shows you what's behind you. Also winks at you when you're not looking.
