@@ -7,7 +7,7 @@ description: >
 exits:
   west: 001-goblin-tea-party
   north: TODO-shattered-sanctum
-  east: TODO-hall-of-echoes
+  east: 004-succubus-den
   south: 003-mighty-dragon
 items:
   - name: Handheld Mirror
