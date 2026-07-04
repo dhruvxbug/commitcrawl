@@ -1,0 +1,29 @@
+# Copy this file to rooms/NNN-your-room-name.yaml and fill it in.
+# NNN = next free 3-digit number. Delete these comments when done.
+
+id: NNN-your-room-name          # must match the filename (without .yaml)
+title: A Short Punchy Title
+description: >
+  What does the player see, hear, smell when they walk in? Two or three
+  sentences is plenty. Make it weird.
+
+# Directions can be: north, south, east, west, up, down, in, out
+# Point to an existing room's id, or a TODO-something id to leave a locked door.
+exits:
+  south: 000-entrance
+
+# Optional — delete if not used
+items:
+  - name: A Suspicious Item
+    description: One line about what it does or looks like.
+
+# Optional — delete if not used
+monster:
+  name: Something Scary Or Not
+  greeting: What it says when you meet it.
+  difficulty: 1        # 1 (harmless) to 5 (yikes)
+
+# Optional — delete if not used
+easter_egg: A hidden interaction, like "say the password to get a reward."
+
+author: your-github-handle

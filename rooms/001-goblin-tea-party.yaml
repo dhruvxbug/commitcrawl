@@ -1,0 +1,18 @@
+id: 001-goblin-tea-party
+title: The Goblin Tea Party
+description: >
+  Three goblins sit around a comically small table, teacups trembling in
+  their claws. They freeze mid-sip and stare at you like you've interrupted
+  something extremely important.
+exits:
+  south: 000-entrance
+  east: TODO-mirror-maze
+monster:
+  name: Goblin King (mid-sip)
+  greeting: "WHO DARES DISTURB THE TEA?"
+  difficulty: 2
+items:
+  - name: Chipped Teacup
+    description: Empty. You get the feeling it was never really about the tea.
+easter_egg: Say "sugar" three times and one goblin offers you a biscuit.
+author: dexter-ifti

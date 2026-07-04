@@ -1,0 +1,13 @@
+id: 000-entrance
+title: The Entrance
+description: >
+  A crooked wooden door stands at the mouth of the dungeon, held shut by a
+  single rusty nail and sheer optimism. A sign nailed above it reads:
+  "Built by whoever showed up. Enter at your own risk."
+exits:
+  north: 001-goblin-tea-party
+items:
+  - name: Suspicious Biscuit
+    description: Smells faintly of danger. Might restore 1 HP. Might not.
+easter_egg: Knock on the door three times and it politely knocks back.
+author: dexter-ifti
