@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CommitCrawl — a dungeon built from pull requests</title>
+<meta name="description" content="An ever-growing dungeon where every room was added by a pull request." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&family=IM+Fell+English+SC&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="wordmark">CommitCrawl</h1>
+    <p class="tagline">a dungeon built one pull request at a time</p>
+    <a class="repo-link" href="https://github.com/dexter-ifti/commitcrawl" target="_blank" rel="noopener">
+      view source · add a room
+    </a>
+  </header>
+
+  <main class="layout">
+    <section class="map-pane" aria-label="Dungeon map">
+      <svg id="map-svg" preserveAspectRatio="xMidYMid meet"></svg>
+      <p class="map-hint">click a torch to step into that room</p>
+    </section>
+
+    <section class="detail-pane" id="detail-pane" aria-live="polite">
+      <!-- filled by app.js -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span id="room-count">— rooms built</span>
+    <span class="divider">·</span>
+    <span>rooms are just YAML files — anyone can add one</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

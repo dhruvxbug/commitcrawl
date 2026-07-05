@@ -12,6 +12,19 @@ description: >
 exits:
   south: 000-entrance
 
+# Optional — delete if not used. Any small ASCII art, a few lines tall is plenty.
+# Ask any AI chat tool for "ascii art of X" if you're not into drawing it by hand.
+ascii_art: |
+      /\
+     /  \
+    /----\
+   /      \
+
+# Optional — delete if not used. A URL to a real image (only shown in the
+# web viewer, not the terminal game). If both image and ascii_art are set,
+# image wins.
+# image: https://i.imgur.com/example.png
+
 # Optional — delete if not used
 items:
   - name: A Suspicious Item

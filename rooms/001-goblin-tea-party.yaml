@@ -4,6 +4,11 @@ description: >
   Three goblins sit around a comically small table, teacups trembling in
   their claws. They freeze mid-sip and stare at you like you've interrupted
   something extremely important.
+ascii_art: |
+    (\___/)  (\___/)  (\___/)
+    ( o.o )  ( ^.^ )  ( -.- )
+    c(")(") c(")(") c(")(")
+        ~ tea time ~  
 exits:
   south: 000-entrance
   east: 002-mirror-maze

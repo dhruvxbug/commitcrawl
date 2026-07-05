@@ -40,6 +40,16 @@ exits:
   east: TODO-clocktower      # this one doesn't yet — build it!
 ```
 
+## Previewing the web viewer locally
+
+```
+npm run build:web
+npx serve web
+```
+
+(Any static file server works — `npm run build:web` just compiles `rooms/*.yaml`
+into `web/rooms.json`, which the viewer fetches.)
+
 ## Contributing
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) — it's short on purpose. One room, one PR,

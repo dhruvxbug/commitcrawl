@@ -4,6 +4,14 @@ description: >
   A crooked wooden door stands at the mouth of the dungeon, held shut by a
   single rusty nail and sheer optimism. A sign nailed above it reads:
   "Built by whoever showed up. Enter at your own risk."
+ascii_art: |
+    +--------+
+    |  [][]  |
+    |   ||   |
+    |  ----  |
+    +--------+
+      |  |
+      |  |
 exits:
   north: 001-goblin-tea-party
   east: 003-mighty-dragon

@@ -1,0 +1,110 @@
+{
+  "000-entrance": {
+    "id": "000-entrance",
+    "title": "The Entrance",
+    "description": "A crooked wooden door stands at the mouth of the dungeon, held shut by a single rusty nail and sheer optimism. A sign nailed above it reads: \"Built by whoever showed up. Enter at your own risk.\"\n",
+    "ascii_art": "+--------+\n|  [][]  |\n|   ||   |\n|  ----  |\n+--------+\n  |  |\n  |  |\n",
+    "exits": {
+      "north": "001-goblin-tea-party",
+      "east": "003-mighty-dragon"
+    },
+    "items": [
+      {
+        "name": "Suspicious Biscuit",
+        "description": "Smells faintly of danger. Might restore 1 HP. Might not."
+      }
+    ],
+    "easter_egg": "Knock on the door three times and it politely knocks back.",
+    "author": "dexter-ifti"
+  },
+  "001-goblin-tea-party": {
+    "id": "001-goblin-tea-party",
+    "title": "The Goblin Tea Party",
+    "description": "Three goblins sit around a comically small table, teacups trembling in their claws. They freeze mid-sip and stare at you like you've interrupted something extremely important.\n",
+    "ascii_art": "(\\___/)  (\\___/)  (\\___/)\n( o.o )  ( ^.^ )  ( -.- )\nc(\")(\") c(\")(\") c(\")(\")\n    ~ tea time ~  \n",
+    "exits": {
+      "south": "000-entrance",
+      "east": "002-mirror-maze"
+    },
+    "monster": {
+      "name": "Goblin King (mid-sip)",
+      "greeting": "WHO DARES DISTURB THE TEA?",
+      "difficulty": 2
+    },
+    "items": [
+      {
+        "name": "Chipped Teacup",
+        "description": "Empty. You get the feeling it was never really about the tea."
+      }
+    ],
+    "easter_egg": "Say \"sugar\" three times and one goblin offers you a biscuit.",
+    "author": "dexter-ifti"
+  },
+  "002-mirror-maze": {
+    "id": "002-mirror-maze",
+    "title": "The Hall of Infinite Reflections",
+    "description": "Your reflection steps before you, mimicking your every move — except its grin is just a bit too wide. Mirrors stretch in every direction, some cracked, some fogged, some showing rooms that definitely aren't behind them.\n",
+    "exits": {
+      "west": "001-goblin-tea-party",
+      "north": "TODO-shattered-sanctum",
+      "east": "004-succubus-den",
+      "south": "003-mighty-dragon"
+    },
+    "items": [
+      {
+        "name": "Handheld Mirror",
+        "description": "Shows you what's behind you. Also winks at you when you're not looking."
+      }
+    ],
+    "monster": {
+      "name": "Reflected Doppelganger",
+      "greeting": "You look tired. Mind if I borrow your face?",
+      "difficulty": 3
+    },
+    "easter_egg": "Say \"I know you're not real\" and the doppelganger sulks into a mirror, disappearing.",
+    "author": "dhruvxbug"
+  },
+  "003-mighty-dragon": {
+    "id": "003-mighty-dragon",
+    "title": "The Mighty Dragon challenges you for a battle!.",
+    "description": "The air is thick with smoke and unbearable heat. Massive claw marks scar the stone floor, and mountains of gold surround an ancient beast.\n",
+    "exits": {
+      "north": "002-mirror-maze",
+      "west": "000-entrance"
+    },
+    "items": [
+      {
+        "name": "Dragonbane",
+        "description": "A legendary blade forged from celestial steel and tempered in the heart of a dying star.\n"
+      }
+    ],
+    "monster": {
+      "name": "Ignaroth, the Flame Tyrant",
+      "greeting": "\"I can hear your heartbeat from across the cavern. It trembles with fear. Kneel now, and I may grant you a swift end.\"\n",
+      "difficulty": 4
+    },
+    "author": "lucifer"
+  },
+  "004-succubus-den": {
+    "id": "004-succubus-den",
+    "title": "The Succubus Den",
+    "description": "Crimson candles flicker along walls draped in suspiciously expensive velvet. A figure lounges on a black throne, smiling like she already knows why you came here. The door behind you quietly locks itself. Awkward.\n",
+    "exits": {
+      "west": "002-mirror-maze",
+      "east": "TODO-chamber-of-broken-hearts"
+    },
+    "monster": {
+      "name": "The Velvet Succubus",
+      "greeting": "Oh? Another adventurer who thinks they have good decision-making skills?",
+      "difficulty": 4
+    },
+    "items": [
+      {
+        "name": "Suspiciously Warm Rose",
+        "description": "It smells wonderful. Your survival instincts strongly recommend putting it back exactly where you found it.\n"
+      }
+    ],
+    "easter_egg": "Say \"I have a girlfriend\" and the entire room goes silent for five uncomfortable seconds.",
+    "author": "Anonymous"
+  }
+}

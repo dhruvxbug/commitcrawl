@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node engine/node/play.js",
-    "validate": "node scripts/validate.js"
+    "validate": "node scripts/validate.js",
+    "build:web": "node scripts/build-web-data.js"
   },
   "license": "MIT",
   "dependencies": {
