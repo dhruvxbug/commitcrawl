@@ -1,0 +1,55 @@
+name: Update rooms.json
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "rooms/**"
+      - "scripts/build-web-data.js"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Validate & rebuild rooms.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          # Check out the actual PR head so we can push back to it.
+          # For fork PRs this is still the fork's branch; the push step
+          # below is skipped in that case.
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate rooms
+        run: npm run validate
+
+      - name: Rebuild web/rooms.json
+        run: npm run build:web
+
+      # Only commit back when the PR comes from a branch in this repo.
+      # Fork PRs don't give GITHUB_TOKEN write access to the fork,
+      # so we skip silently — the viewer will be updated when the PR merges.
+      - name: Commit updated rooms.json (same-repo PRs only)
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add web/rooms.json
+          # Exit 0 if nothing changed (rooms.json was already up to date)
+          git diff --staged --quiet && echo "rooms.json already up to date" || \
+            git commit -m "chore: regenerate web/rooms.json [skip ci]"
+          git push

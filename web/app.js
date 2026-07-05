@@ -263,7 +263,7 @@ function renderLockedDetail(id) {
     <div class="empty-state">
       <p>This door hasn't been opened yet.</p>
       <p>Room <code>${escapeHtml(id)}</code> doesn't exist — someone needs to build it.</p>
-      <p><a href="https://github.com/dexter-ifti/commitcrawl/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Read how to add it →</a></p>
+      <p><a href="https://github.com/dexter-ifti/commitcrawl/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Read how to add it →</a></p>
     </div>
   `;
 }
