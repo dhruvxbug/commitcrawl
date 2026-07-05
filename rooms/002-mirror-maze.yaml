@@ -1,12 +1,14 @@
-id: l1c1-02-mirror-maze
+id: 002-mirror-maze
 title: The Hall of Infinite Reflections
 description: >
   Your reflection steps before you, mimicking your every move — except its grin
   is just a bit too wide. Mirrors stretch in every direction, some cracked,
   some fogged, some showing rooms that definitely aren't behind them.
 exits:
-  east: l1c1-01-goblin-tea-party
-  north: l1c1-03-mighty-dragon
+  west: 001-goblin-tea-party
+  north: TODO-shattered-sanctum
+  east: 004-succubus-den
+  south: 003-mighty-dragon
 items:
   - name: Handheld Mirror
     description: Shows you what's behind you. Also winks at you when you're not looking.

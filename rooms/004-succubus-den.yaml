@@ -1,0 +1,20 @@
+id: 004-succubus-den
+title: "The Succubus Den"
+description: >
+  Crimson candles flicker along walls draped in suspiciously expensive velvet.
+  A figure lounges on a black throne, smiling like she already knows why you
+  came here. The door behind you quietly locks itself. Awkward.
+exits:
+  west: 002-mirror-maze
+  east: TODO-chamber-of-broken-hearts
+monster:
+  name: "The Velvet Succubus"
+  greeting: "Oh? Another adventurer who thinks they have good decision-making skills?"
+  difficulty: 4
+items:
+  - name: "Suspiciously Warm Rose"
+    description: >
+      It smells wonderful. Your survival instincts strongly recommend putting
+      it back exactly where you found it.
+easter_egg: 'Say "I have a girlfriend" and the entire room goes silent for five uncomfortable seconds.'
+author: Anonymous

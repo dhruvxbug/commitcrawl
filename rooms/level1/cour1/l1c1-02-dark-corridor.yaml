@@ -1,0 +1,15 @@
+id: l1c1-02-dark-corridor
+title: The Dark Corridor
+description: >
+  The light from the entrance barely reaches this part of the dungeon. It smells
+  like old parchment and regrets. The path abruptly ends at a solid stone wall.
+exits:
+  west: l1c1-01-stairwell
+  down: TODO-l1c1-03-entrance
+puzzle:
+  locked_exit: down
+  description: "It is pitch black here. You cannot see any way forward."
+  question: "The darkness is absolute. Place a light source to illuminate the area."
+  answer: Dusty Torch
+  success_msg: "You place the Dusty Torch on an empty wall sconce. The sudden light reveals a hidden trapdoor to the basement! But suddenly, a swarm of bats attacks your face and you fall down!"
+author: Yashwanth137

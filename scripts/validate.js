@@ -5,47 +5,57 @@ import yaml from "js-yaml";
 const ROOMS_DIR = path.join(process.cwd(), "rooms");
 const VALID_DIRECTIONS = ["north", "south", "east", "west", "up", "down", "in", "out"];
 
+function getAllYamlFiles(dir, fileList = []) {
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      getAllYamlFiles(filePath, fileList);
+    } else if (file.endsWith(".yaml") && !file.startsWith("_")) {
+      fileList.push(filePath);
+    }
+  }
+  return fileList;
+}
+
 function loadRooms() {
-  const files = fs
-    .readdirSync(ROOMS_DIR)
-    .filter((f) => f.endsWith(".yaml") && !f.startsWith("_"));
+  const files = getAllYamlFiles(ROOMS_DIR);
 
   const rooms = new Map();
   const errors = [];
 
-  for (const file of files) {
-    const fullPath = path.join(ROOMS_DIR, file);
-    const expectedId = file.replace(/\.yaml$/, "");
+  for (const fullPath of files) {
+    const expectedId = path.basename(fullPath, ".yaml");
     let data;
 
     try {
       data = yaml.load(fs.readFileSync(fullPath, "utf8"));
     } catch (e) {
-      errors.push(`[${file}] Invalid YAML: ${e.message}`);
+      errors.push(`[${expectedId}] Invalid YAML: ${e.message}`);
       continue;
     }
 
     if (!data || typeof data !== "object") {
-      errors.push(`[${file}] Empty or malformed room file.`);
+      errors.push(`[${expectedId}] Empty or malformed room file.`);
       continue;
     }
 
     if (!data.id) {
-      errors.push(`[${file}] Missing required field: id`);
+      errors.push(`[${expectedId}] Missing required field: id`);
     } else if (data.id !== expectedId) {
-      errors.push(`[${file}] id "${data.id}" does not match filename "${expectedId}"`);
+      errors.push(`[${expectedId}] id "${data.id}" does not match filename "${expectedId}"`);
     }
 
-    if (!data.title) errors.push(`[${file}] Missing required field: title`);
-    if (!data.description) errors.push(`[${file}] Missing required field: description`);
-    if (!data.author) errors.push(`[${file}] Missing required field: author`);
+    if (!data.title) errors.push(`[${expectedId}] Missing required field: title`);
+    if (!data.description) errors.push(`[${expectedId}] Missing required field: description`);
+    if (!data.author) errors.push(`[${expectedId}] Missing required field: author`);
 
     if (!data.exits || typeof data.exits !== "object" || Object.keys(data.exits).length === 0) {
-      errors.push(`[${file}] Room must have at least one exit.`);
+      errors.push(`[${expectedId}] Room must have at least one exit.`);
     } else {
       for (const dir of Object.keys(data.exits)) {
         if (!VALID_DIRECTIONS.includes(dir)) {
-          errors.push(`[${file}] Invalid direction "${dir}". Use one of: ${VALID_DIRECTIONS.join(", ")}`);
+          errors.push(`[${expectedId}] Invalid direction "${dir}". Use one of: ${VALID_DIRECTIONS.join(", ")}`);
         }
       }
     }
