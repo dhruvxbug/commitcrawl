@@ -1,4 +1,4 @@
-id: l1c1-00-entrance
+id: 000-entrance
 title: The Entrance
 description: >
   A crooked wooden door stands at the mouth of the dungeon, held shut by a
@@ -13,12 +13,10 @@ ascii_art: |
       |  |
       |  |
 exits:
-  north: l1c1-01-goblin-tea-party
-  east: l1c1-05-dark-corridor
+  north: 001-goblin-tea-party
+  east: 003-mighty-dragon
 items:
   - name: Suspicious Biscuit
     description: Smells faintly of danger. Might restore 1 HP. Might not.
-    on_use: You eat the biscuit. It tastes like copper and regret. You don't feel any better.
-    consumable: true
 easter_egg: Knock on the door three times and it politely knocks back.
 author: dexter-ifti

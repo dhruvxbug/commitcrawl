@@ -5,14 +5,25 @@ import yaml from "js-yaml";
 
 const ROOMS_DIR = path.join(process.cwd(), "rooms");
 
+function getAllYamlFiles(dir, fileList = []) {
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    if (fs.statSync(filePath).isDirectory()) {
+      getAllYamlFiles(filePath, fileList);
+    } else if (file.endsWith(".yaml") && !file.startsWith("_")) {
+      fileList.push(filePath);
+    }
+  }
+  return fileList;
+}
+
 function loadRooms() {
-  const files = fs
-    .readdirSync(ROOMS_DIR)
-    .filter((f) => f.endsWith(".yaml") && !f.startsWith("_"));
+  const files = getAllYamlFiles(ROOMS_DIR);
 
   const rooms = new Map();
-  for (const file of files) {
-    const data = yaml.load(fs.readFileSync(path.join(ROOMS_DIR, file), "utf8"));
+  for (const fullPath of files) {
+    const data = yaml.load(fs.readFileSync(fullPath, "utf8"));
     if (data && data.id) rooms.set(data.id, data);
   }
   return rooms;
@@ -20,9 +31,9 @@ function loadRooms() {
 
 const rooms = loadRooms();
 const args = process.argv.slice(2);
-const level = args[0] || "1";
-const cour = args[1] || "1";
-const startRoomId = `l${level}c${cour}-00-entrance`;
+const level = args[0];
+const cour = args[1];
+const startRoomId = level ? `l${level}c${cour || '1'}-00-entrance` : "000-entrance";
 let currentId = rooms.has(startRoomId) ? startRoomId : [...rooms.keys()][0];
 const inventory = [];
 const defeated = new Set();

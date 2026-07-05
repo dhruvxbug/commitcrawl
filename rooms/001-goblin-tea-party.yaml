@@ -1,4 +1,4 @@
-id: l1c1-01-goblin-tea-party
+id: 001-goblin-tea-party
 title: The Goblin Tea Party
 description: >
   Three goblins sit around a comically small table, teacups trembling in
@@ -10,8 +10,8 @@ ascii_art: |
     c(")(") c(")(") c(")(")
         ~ tea time ~  
 exits:
-  south: l1c1-00-entrance
-  west: l1c1-02-mirror-maze
+  south: 000-entrance
+  east: 002-mirror-maze
 monster:
   name: Goblin King (mid-sip)
   greeting: "WHO DARES DISTURB THE TEA?"
