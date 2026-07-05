@@ -1,0 +1,15 @@
+id: l1c1-04-stairwell
+title: The Descent
+description: >
+  A spiral stone staircase leads down into impenetrable darkness. The heat of the 
+  dragon's lair fades, replaced by a damp, chilling draft from below.
+exits:
+  west: l1c1-03-mighty-dragon
+  down: TODO-l1c2-00-corridor
+puzzle:
+  locked_exit: down
+  description: "A heavy stone box blocks the stairs down. It has a slot perfectly shaped for a legendary blade."
+  question: "A voice echoes: 'I was forged from celestial steel and tempered in the heat of a Flame Dragon. Place me in the box to proceed.'"
+  answer: Dragonbane
+  success_msg: "You place the Dragonbane in the box. The box clicks open, granting access to the depths below."
+author: Yashwanth137

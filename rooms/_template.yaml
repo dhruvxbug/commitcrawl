@@ -29,12 +29,22 @@ ascii_art: |
 items:
   - name: A Suspicious Item
     description: One line about what it does or looks like.
+    on_use: (Optional) Text to display when a player types 'use <item>'
+    consumable: true     # (Optional) If true, the item is removed from inventory after use
 
 # Optional — delete if not used
 monster:
   name: Something Scary Or Not
   greeting: What it says when you meet it.
   difficulty: 1        # 1 (harmless) to 5 (yikes)
+
+# Optional — delete if not used
+puzzle:
+  locked_exit: direction
+  description: "Text shown when trying to use the locked exit."
+  question: "Question asked to prompt the user to use the 'place <item>' command."
+  answer: Correct Answer
+  success_msg: "Text shown when solved."
 
 # Optional — delete if not used
 easter_egg: A hidden interaction, like "say the password to get a reward."

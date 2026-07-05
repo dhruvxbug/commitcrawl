@@ -19,11 +19,14 @@ function loadRooms() {
 }
 
 const rooms = loadRooms();
-let currentId = rooms.has("000-entrance")
-  ? "000-entrance"
-  : [...rooms.keys()][0];
+const args = process.argv.slice(2);
+const level = args[0] || "1";
+const cour = args[1] || "1";
+const startRoomId = `l${level}c${cour}-00-entrance`;
+let currentId = rooms.has(startRoomId) ? startRoomId : [...rooms.keys()][0];
 const inventory = [];
 const defeated = new Set();
+let activePuzzleState = null;
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -31,7 +34,9 @@ const rl = readline.createInterface({
 });
 
 function describeRoom(room) {
-  console.log(`\n=== ${room.title} ===`);
+  const match = room.id.match(/^l(\d+)c(\d+)-/);
+  const levelStr = match ? ` (Level ${match[1]}, Cour ${match[2]})` : "";
+  console.log(`\n=== ${room.title}${levelStr} ===`);
   console.log(room.description.trim());
 
   if (room.monster && !defeated.has(room.id)) {
@@ -47,6 +52,8 @@ function describeRoom(room) {
 
   if (room.exits) {
     const exits = Object.entries(room.exits).map(([dir, target]) => {
+      const isLockedByPuzzle = room.puzzle && !room.puzzle.solved && room.puzzle.locked_exit === dir;
+      if (isLockedByPuzzle) return `${dir} (locked by puzzle)`;
       const locked = String(target).startsWith("TODO-");
       return locked ? `${dir} (a locked door — unbuilt)` : dir;
     });
@@ -59,13 +66,64 @@ function prompt() {
 }
 
 function handleCommand(input) {
-  const room = rooms.get(currentId);
   const [verb, ...rest] = input.split(" ");
   const arg = rest.join(" ");
+
+  if (activePuzzleState) {
+    const { room, phase } = activePuzzleState;
+    if (input === "quit" || input === "exit") {
+      console.log("You climb out of the dungeon. See you next time.");
+      rl.close();
+      return;
+    }
+    
+    if (phase === 'CONFIRM_START') {
+      if (input === 'ok') {
+        console.log(room.puzzle.question);
+        console.log("Place the answer item in the box (Command: place <item>)");
+        activePuzzleState.phase = 'AWAIT_ANSWER';
+      } else {
+        console.log("Puzzle cancelled.");
+        activePuzzleState = null;
+      }
+      prompt();
+      return;
+    } else if (phase === 'AWAIT_ANSWER') {
+      if (verb === 'place') {
+        const item = inventory.find((i) => i.name.toLowerCase().includes(arg));
+        if (!item) {
+          console.log(`You don't have '${arg}' in your inventory to place.`);
+          activePuzzleState = null;
+        } else if (item.name.toLowerCase().includes(room.puzzle.answer.toLowerCase())) {
+          console.log(room.puzzle.success_msg);
+          room.puzzle.solved = true;
+          inventory.splice(inventory.indexOf(item), 1);
+          activePuzzleState = null;
+        } else {
+          console.log("Incorrect. The box hums angrily and rejects the item.");
+          activePuzzleState = null;
+        }
+      } else {
+        console.log("Invalid command. You must 'place <item>' to answer.");
+        activePuzzleState = null;
+      }
+      prompt();
+      return;
+    }
+  }
+
+  const room = rooms.get(currentId);
 
   if (input === "look") {
     describeRoom(room);
   } else if (verb === "go" && arg) {
+    if (room.puzzle && !room.puzzle.solved && room.puzzle.locked_exit === arg) {
+      console.log(room.puzzle.description);
+      console.log("Solve puzzle to open door? (Type 'ok' to continue)");
+      activePuzzleState = { room, phase: 'CONFIRM_START' };
+      prompt();
+      return;
+    }
     const target = room.exits && room.exits[arg];
     if (!target) {
       console.log(`You can't go ${arg} from here.`);
@@ -89,6 +147,20 @@ function handleCommand(input) {
     } else {
       console.log("You don't see that here.");
     }
+  } else if (verb === "use" && arg) {
+    const item = inventory.find((i) => i.name.toLowerCase().includes(arg));
+    if (item) {
+      if (item.on_use) {
+        console.log(item.on_use);
+        if (item.consumable) {
+          inventory.splice(inventory.indexOf(item), 1);
+        }
+      } else {
+        console.log(`You use the ${item.name}. Nothing interesting happens.`);
+      }
+    } else {
+      console.log("You don't have that in your inventory.");
+    }
   } else if (verb === "fight" && room.monster && !defeated.has(room.id)) {
     defeated.add(room.id);
     console.log(
@@ -102,7 +174,7 @@ function handleCommand(input) {
     );
   } else if (input === "help") {
     console.log(
-      "Commands: look, go <direction>, take <item>, check <item>, fight, inventory, quit",
+      "Commands: look, go <direction>, take <item>, check <item>, use <item>, place <item>, fight, inventory, quit",
     );
   } else if (input === "quit" || input === "exit") {
     console.log("You climb out of the dungeon. See you next time.");
