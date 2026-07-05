@@ -5,8 +5,8 @@ description: >
   scar the stone floor, and mountains of gold surround an ancient beast.
 exits:
   north: 002-mirror-maze
-  west: 000-entrance
-  east: l1c1-01-stairwell
+  west: l1c1-01-stairwell
+  east: 005-cosmic-observatory
 items:
   - name: Dragonbane
     description: >
