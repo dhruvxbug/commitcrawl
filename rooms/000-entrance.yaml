@@ -15,6 +15,7 @@ ascii_art: |
 exits:
   north: 001-goblin-tea-party
   east: 003-mighty-dragon
+  west: 006-library-of-lies
 items:
   - name: Suspicious Biscuit
     description: Smells faintly of danger. Might restore 1 HP. Might not.

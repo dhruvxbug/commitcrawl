@@ -1,0 +1,51 @@
+id: 006-library-of-lies
+title: The Library of Lies
+
+description: >
+  Shelves stretch into darkness, crammed with books whose titles actively
+  insult you. "Honest Politicians: A Complete Collection" (all pages blank).
+  "The Ocean is Dry" (just a picture of a desert). "101% Accurate Riddles."
+  A single leather-bound book glows faintly on a pedestal at the center.
+  A stone alcove shaped like an open book is set into the north wall.
+
+exits:
+  east: 000-entrance
+  north: TODO-shattered-sanctum
+
+items:
+  - name: Riddle Book
+    description: >
+      You open it. Inside, a single line:
+      "I have words but never speak. What am I?"
+      The rest is blank. On the last page, someone scrawled:
+      "Place me in the alcove. The answer is also the key."
+
+ascii_art: |
+      _______________________________
+      /   ________________________   \
+      |  |  The Only True Riddle  |  |
+      |  |  in This Library       |  |
+      |  |________________________|  |
+      |                              |
+       \_____________________________/
+          \_______________________/
+           |||||||||||||||||||||||
+           |||||||||||||||||||||||
+
+puzzle:
+  locked_exit: north
+  description: >
+    A stone alcove shaped like an open book. An inscription reads:
+    "Speak the answer with your hands."
+  question: "What has words but never speaks?"
+  answer: book
+  success_msg: >
+    The alcove glows. The book sinks into the stone, and the wall
+    grinds open, revealing a passage northward. (go north)
+difficulty: 4
+
+easter_egg: >
+  Check the Riddle Book to read the riddle. Take it, then place it
+  in the alcove to unlock the north exit.
+
+author: dhruvxbug
