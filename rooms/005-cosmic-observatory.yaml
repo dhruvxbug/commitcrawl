@@ -39,9 +39,9 @@ items:
 monster:
   name: The Celestial Watcher
   greeting: >
-    "For centuries I have watched adventurers seek gold, glory, and power.
+    For centuries I have watched adventurers seek gold, glory, and power.
     You are the first to pause and admire the stars.
-    Perhaps your journey will end differently."
+    Perhaps your journey will end differently.
   difficulty: 2
 
 easter_egg: >
